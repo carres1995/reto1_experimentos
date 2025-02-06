@@ -3,7 +3,7 @@
 #Lista global para almacenar los diccionarios.
 lista_experimentos=[]
 
-#FUNCIONES*************************
+#FUNCIONES********************************************************
 
 #Funcion para agragar experimentos a la lista de diccionarios.
 def agregar_exp(nombre, fecha, resultado, temperatura, energia):
@@ -83,7 +83,7 @@ def promedio(list_diccionario, clave):
     return sum(valores)/ len(valores) if valores else None
 
 
-#MENU******
+#MENU******************************************************
 
 
 while True:
@@ -101,7 +101,7 @@ while True:
         print("\nGracias Adios!! ")
         break
     
-#SUBMENU DE OPERACIONES*********
+#SUBMENU DE OPERACIONES***********************************************
     if ingreso == "5":
         while True:
             print("\nMenu operaciones: ")
@@ -111,7 +111,9 @@ while True:
             print("4. Volver menu principal")
         
             ingreso1= input("Ingrese operacion: ")
-            if ingreso1 == '1':#Ingreso para obtener los promedios
+
+#Ingreso para obtener los promedios
+            if ingreso1 == '1':
                 print('\nOpciones disponibles para calcular el promedio: ')
                 print('1. Temperatura (°C)')
                 print('2. Energía Liberada(kJ)')
@@ -130,7 +132,7 @@ while True:
                     print(f'\nNo hay datos numericos para {clave1}.')
                     
 
-#SUBMENU DE MINIMOS*********
+#SUBMENU DE MINIMOS********************************************************
             if ingreso1 == '2':
                 while True:
                     print("\nMenu minimos: ")
@@ -143,7 +145,7 @@ while True:
                     if ingreso2 == '4':
                         break
 
-#SUBMENU DE MAXIMOS*********
+#SUBMENU DE MAXIMOS*******************************************************
             if ingreso1 == "3":
                 while True:
                     print("\nMenu maximos: ")
@@ -158,7 +160,7 @@ while True:
 
             if ingreso1 == "4":
                 break
-
+#Ingreso para registro de experimentos
     if ingreso =="1":
         nombre= input("\nIngrese nombre experimento: ")
         dia = validar_num(1,31,'Digita dia del experimento: ')
