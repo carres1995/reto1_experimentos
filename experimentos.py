@@ -83,6 +83,42 @@ def promedio(list_diccionario, clave):
     return sum(valores)/ len(valores) if valores else None
 
 
+def comparar_experimentos(lista, nombre1, nombre2):
+    """Compara temperatura y energía liberada entre dos experimentos."""
+    exp1 = next((exp for exp in lista if exp["Nombre"].lower() == nombre1.lower()), None)
+    exp2 = next((exp for exp in lista if exp["Nombre"].lower() == nombre2.lower()), None)
+
+    if exp1 is None or exp2 is None:
+        print("\n❌ Uno o ambos experimentos no existen en la lista.")
+        return
+
+    print(f"\n📊 Comparación entre '{nombre1}' y '{nombre2}':")
+
+    # Comparación de temperatura
+    temp1 = float(exp1["Temperatura (°C)"])
+    temp2 = float(exp2["Temperatura (°C)"])
+    
+    if temp1 > temp2:
+        print(f"{nombre1} tiene mayor temperatura ({temp1}°C) que {nombre2} ({temp2}°C).")
+    elif temp1 < temp2:
+        print(f"{nombre1} tiene menor temperatura ({temp1}°C) que {nombre2} ({temp2}°C).")
+    else:
+        print(f" Ambos experimentos tienen la misma temperatura ({temp1}°C).")
+
+    # Comparación de energía liberada
+    energia1 = float(exp1["Energía Liberada(kJ)"])
+    energia2 = float(exp2["Energía Liberada(kJ)"])
+    
+    if energia1 > energia2:
+        print(f" {nombre1} liberó más energía ({energia1} kJ) que {nombre2} ({energia2} kJ).")
+    elif energia1 < energia2:
+        print(f" {nombre1} liberó menos energía ({energia1} kJ) que {nombre2} ({energia2} kJ).")
+    else:
+        print(f" Ambos experimentos liberaron la misma cantidad de energía ({energia1} kJ).")
+
+    print("\n Comparación finalizada.")
+
+
 #MENU******
 
 
@@ -108,7 +144,8 @@ while True:
             print("\n1. Promedio")
             print("2. Minimos")
             print("3. Maximos")
-            print("4. Volver menu principal")
+            print("4. Comparar")
+            print("5. Volver menu principal")
         
             ingreso1= input("Ingrese operacion: ")
             if ingreso1 == '1':#Ingreso para obtener los promedios
@@ -128,6 +165,16 @@ while True:
                     print(f'\nEl resultado de {clave1} es: {result:.2f}')
                 else:
                     print(f'\nNo hay datos numericos para {clave1}.')
+                    
+                ingreso1 = input("Ingrese operación: ")
+
+            elif ingreso1 == '4':  # Comparar experimentos
+                nombre1 = input("\nIngrese el nombre del primer experimento: ")
+                nombre2 = input("Ingrese el nombre del segundo experimento: ")
+                comparar_experimentos(lista_experimentos, nombre1, nombre2)
+
+            elif ingreso1 == '5':  # Salir del menú de operaciones
+                break    
                     
 
 #SUBMENU DE MINIMOS*********
@@ -182,3 +229,4 @@ while True:
         clave = input('Ingresa el parametro al cual le quieres cambiar el resultado: ')
         nuevo_valor = input('Ingresa el nuevo valor: ')
         modificar_experimento(lista_experimentos,nomb_modificar,clave,nuevo_valor)
+        
