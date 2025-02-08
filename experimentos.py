@@ -83,17 +83,17 @@ def promedio(list_diccionario, clave):
     return sum(valores)/ len(valores) if valores else None
 
 
-#MENU******************************************************
+#Funcion de comparar 
 def comparar_experimentos(lista, nombre1, nombre2):
     """Compara temperatura y energía liberada entre dos experimentos."""
     exp1 = next((exp for exp in lista if exp["Nombre"].lower() == nombre1.lower()), None)
     exp2 = next((exp for exp in lista if exp["Nombre"].lower() == nombre2.lower()), None)
 
     if exp1 is None or exp2 is None:
-        print("\n❌ Uno o ambos experimentos no existen en la lista.")
+        print("\nUno o ambos experimentos no existen en la lista.")
         return
 
-    print(f"\n📊 Comparación entre '{nombre1}' y '{nombre2}':")
+    print(f"\nComparación entre '{nombre1}' y '{nombre2}':")
 
     # Comparación de temperatura
     temp1 = float(exp1["Temperatura (°C)"])
@@ -120,7 +120,7 @@ def comparar_experimentos(lista, nombre1, nombre2):
     print("\n Comparación finalizada.")
 
 
-#MENU******
+#MENU**************************************************************
 
 
 while True:
@@ -143,10 +143,9 @@ while True:
         while True:
             print("\nMenu operaciones: ")
             print("\n1. Promedio")
-            print("2. Minimos")
-            print("3. Maximos")
-            print("4. Comparar")
-            print("5. Volver menu principal")
+            print("2. Maximos y Minimos")
+            print("3. Comparar")
+            print("4. Volver menu principal")
         
             ingreso1= input("Ingrese operacion: ")
 
@@ -171,43 +170,14 @@ while True:
                     
                 ingreso1 = input("Ingrese operación: ")
 
-            elif ingreso1 == '4':  # Comparar experimentos
+            elif ingreso1 == '3':  # Comparar experimentos
                 nombre1 = input("\nIngrese el nombre del primer experimento: ")
                 nombre2 = input("Ingrese el nombre del segundo experimento: ")
                 comparar_experimentos(lista_experimentos, nombre1, nombre2)
 
-            elif ingreso1 == '5':  # Salir del menú de operaciones
+            elif ingreso1 == '4':  # Salir del menú de operaciones
                 break    
                     
-
-#SUBMENU DE MINIMOS********************************************************
-            if ingreso1 == '2':
-                while True:
-                    print("\nMenu minimos: ")
-                    print("\n1. Temperatura")
-                    print("2. Energia Liberada")
-                    print("4. Menu anterior")
-        
-                    ingreso2= input("\nIngrese la opcion al cual desea conocer el minimo: \n ")
-
-                    if ingreso2 == '4':
-                        break
-
-#SUBMENU DE MAXIMOS*******************************************************
-            if ingreso1 == "3":
-                while True:
-                    print("\nMenu maximos: ")
-                    print("\n1. Temperatura")
-                    print("2. Energia Liberada")
-                    print("4. Menu anterior")
-        
-                    ingreso3= input("\nIngrese la opcion al cual desea conocer el maximo:\n ")
-
-                    if ingreso3 == "4":
-                        break
-
-            if ingreso1 == "4":
-                break
 #Ingreso para registro de experimentos
     if ingreso =="1":
         nombre= input("\nIngrese nombre experimento: ")
