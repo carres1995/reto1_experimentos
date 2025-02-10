@@ -20,9 +20,9 @@ lista_experimentos=[{'Nombre': 'Reaccion del sodio al agua',
 #Funcion para agragar experimentos a la lista de diccionarios.
 def agregar_exp(nombre, fecha, resultado, temperatura, energia):
     nuevo_exp = {"Nombre": nombre,"Fecha": fecha,"Resultado": resultado,"Temperatura (°C)": temperatura,"Energía Liberada(kJ)": energia}
-    lista_experimentos.append(nuevo_exp)
+    lista_experimentos.append(nuevo_exp) #Se crea nuevo diccionario conn los datos del experimento y se almacena en la lista global
     
-    print(f"\n{'Nombre':<40}{'Fecha':<12}{'Resultado':<50}{'Temp (°C)':<15}{'Energía (kJ)':<15}")
+    print(f"\n{'Nombre':<40}{'Fecha':<12}{'Resultado':<50}{'Temp (°C)':<15}{'Energía (kJ)':<15}") #Se imprime en formato tabla con la informacion del experimento agregado
 
     print(f"{nombre:<40}{fecha:<12}{resultado:<50}{temperatura:<15}{energia:<15}")
    
@@ -32,10 +32,10 @@ def agregar_exp(nombre, fecha, resultado, temperatura, energia):
 
 #Funcion de eliminar experimento.
 def eliminar_experimento(nombre_eliminar):
-    global lista_experimentos  
+    global lista_experimentos  #Referencia a la lista global
     for exp in lista_experimentos:
-        if exp["Nombre"].lower() == nombre_eliminar.lower(): 
-            lista_experimentos.remove(exp)
+        if exp["Nombre"].lower() == nombre_eliminar.lower(): #Busca por nombre sin distinguir mayusculas
+            lista_experimentos.remove(exp) #Elimina el experimento encontrado
             print(f"\nEl experimento '{nombre_eliminar}' ha sido eliminado con éxito.")
             return
     print(f"\nNo se encontró ningún experimento con el nombre '{nombre_eliminar}'.")
@@ -47,8 +47,8 @@ def validar_num(lim_min, lim_max, mensaje):
     while True:
         try:
             numero = int(input(mensaje))
-            if numero >= lim_min and numero <= lim_max:
-                return numero
+            if numero >= lim_min and numero <= lim_max: #Verifica que este en rango permitido
+                return numero #Retorna el numero solo si es valido
             else:
                 print(f"\nEl numero debe estar entre {lim_min} y {lim_max}. Intenta de nuevo!\n")
         except ValueError:
@@ -58,7 +58,7 @@ def validar_num(lim_min, lim_max, mensaje):
 
 #Funcion para visualizar registros de los experimentos
 def visualizar_exp():
-    if not lista_experimentos:
+    if not lista_experimentos: #Verifica que si existan los experimentos en la lista
         print("\nNo hay experimentnos agregados!!!")
         return
     print("\nTabla de Experimentos\n") 
@@ -66,7 +66,7 @@ def visualizar_exp():
     print(f"{'Nombre':<25}{'Fecha':<12}{'Resultado':<50}{'Temp (°C)':<15}{'Energía (kJ)':<15}")
 
     
-    for exp in lista_experimentos:
+    for exp in lista_experimentos: #recorre la lista de experimentos e imprime los datos en formato tabla 
         print(f"{exp['Nombre']:<25}{exp['Fecha']:<12}{exp['Resultado']:<50}{exp['Temperatura (°C)']:<15}{exp['Energía Liberada(kJ)']:<15}")
     
         
@@ -76,7 +76,7 @@ def modificar_experimento(lista, nombre_modificar, clave, nuevo_valor):
     global lista_experimentos
     # Buscar el experimento por nombre
     for exp in lista:
-        if exp["Nombre"].lower() == nombre_modificar.lower(): 
+        if exp["Nombre"].lower() == nombre_modificar.lower(): #Busca experimento por nombre sin distinguir mayusculas
             if clave in exp:
                 
                 exp[clave] = nuevo_valor  # Modificar el valor
@@ -94,21 +94,21 @@ def modificar_experimento(lista, nombre_modificar, clave, nuevo_valor):
 
 #Funcion para obtener promedios.
 def promedio(list_diccionario, clave):
-    valores = []
+    valores = [] #Lista global para extraer los valoresy obtener los promedios
     for exp in list_diccionario:
         if clave in exp:
             try:
-                valores.append(float(exp[clave]))
+                valores.append(float(exp[clave]))#Agrega los valores a la lista global VALORES 
             except ValueError:
                 pass
-    return sum(valores)/ len(valores) if valores else None
+    return sum(valores)/ len(valores) if valores else None #Retorna el promedio si se cumple la condicion, de no ser asi retorna none
 
 
 
 #Funcion de comparar 
 def comparar_experimentos(lista, nombre1, nombre2):
     """Compara temperatura y energía liberada entre dos experimentos."""
-    exp1 = next((exp for exp in lista if exp["Nombre"].lower() == nombre1.lower()), None)
+    exp1 = next((exp for exp in lista if exp["Nombre"].lower() == nombre1.lower()), None) #Busca los experimentos por nombre, si no se encuentran genera none
     exp2 = next((exp for exp in lista if exp["Nombre"].lower() == nombre2.lower()), None)
 
     if exp1 is None or exp2 is None:
@@ -148,7 +148,7 @@ def obtener_min_max(lista, clave):
     if not lista:
         print("\nNo hay experimentos registrados para calcular mínimos y máximos.")
         return None, None
-
+#Encontrar el minimo y el maximo basandose en la clave numerica
     minimo = min(lista, key=lambda x: x[clave])
     maximo = max(lista, key=lambda x: x[clave])
     
