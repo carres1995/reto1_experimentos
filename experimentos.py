@@ -22,9 +22,9 @@ def agregar_exp(nombre, fecha, resultado, temperatura, energia):
     nuevo_exp = {"Nombre": nombre,"Fecha": fecha,"Resultado": resultado,"Temperatura (°C)": temperatura,"Energía Liberada(kJ)": energia}
     lista_experimentos.append(nuevo_exp) #Se crea nuevo diccionario conn los datos del experimento y se almacena en la lista global
     
-    print(f"\n{'Nombre':<40}{'Fecha':<12}{'Resultado':<50}{'Temp (°C)':<15}{'Energía (kJ)':<15}") #Se imprime en formato tabla con la informacion del experimento agregado
+    print(f"\n{'Nombre':<35}{'Fecha':<12}{'Resultado':<80}{'Temp (°C)':<15}{'Energía (kJ)':<15}") #Se imprime en formato tabla con la informacion del experimento agregado
 
-    print(f"{nombre:<40}{fecha:<12}{resultado:<50}{temperatura:<15}{energia:<15}")
+    print(f"{nombre:<35}{fecha:<12}{resultado:<80}{temperatura:<15}{energia:<15}")
    
     print(f"\nExperimento {nombre} grabado con exito!!!!!")
 
