@@ -17,6 +17,20 @@ lista_experimentos=[{'Nombre': 'Reaccion del sodio al agua',
 
 #FUNCIONES********************************************************
 
+#Funcion para validacion de datos.
+def validar_num(lim_min, lim_max, mensaje):
+    while True:
+        try:
+            numero = int(input(mensaje))
+            if numero >= lim_min and numero <= lim_max: #Verifica que este en rango permitido
+                return numero #Retorna el numero solo si es valido
+            else:
+                print(f"\nEl numero debe estar entre {lim_min} y {lim_max}. Intenta de nuevo!\n")
+        except ValueError:
+            print(" \nDebe ingresar un numero.\n ")
+
+
+
 #Funcion para agragar experimentos a la lista de diccionarios.
 def agregar_exp(nombre, fecha, resultado, temperatura, energia):
     nuevo_exp = {"Nombre": nombre,"Fecha": fecha,"Resultado": resultado,"Temperatura (°C)": temperatura,"Energía Liberada(kJ)": energia}
@@ -39,21 +53,6 @@ def eliminar_experimento(nombre_eliminar):
             print(f"\nEl experimento '{nombre_eliminar}' ha sido eliminado con éxito.")
             return
     print(f"\nNo se encontró ningún experimento con el nombre '{nombre_eliminar}'.")
-
-
-
-#Funcion para validacion de datos.
-def validar_num(lim_min, lim_max, mensaje):
-    while True:
-        try:
-            numero = int(input(mensaje))
-            if numero >= lim_min and numero <= lim_max: #Verifica que este en rango permitido
-                return numero #Retorna el numero solo si es valido
-            else:
-                print(f"\nEl numero debe estar entre {lim_min} y {lim_max}. Intenta de nuevo!\n")
-        except ValueError:
-            print(" \nDebe ingresar un numero.\n ")
-
 
 
 #Funcion para visualizar registros de los experimentos
