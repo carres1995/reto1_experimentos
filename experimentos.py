@@ -63,11 +63,11 @@ def visualizar_exp():
         return
     print("\nTabla de Experimentos\n") 
     
-    print(f"{'Nombre':<25}{'Fecha':<12}{'Resultado':<50}{'Temp (°C)':<15}{'Energía (kJ)':<15}")
+    print(f"{'Nombre':<35}{'Fecha':<12}{'Resultado':<80}{'Temp (°C)':<15}{'Energía (kJ)':<15}")
 
     
     for exp in lista_experimentos: #recorre la lista de experimentos e imprime los datos en formato tabla 
-        print(f"{exp['Nombre']:<25}{exp['Fecha']:<12}{exp['Resultado']:<50}{exp['Temperatura (°C)']:<15}{exp['Energía Liberada(kJ)']:<15}")
+        print(f"{exp['Nombre']:<35}{exp['Fecha']:<12}{exp['Resultado']:<80}{exp['Temperatura (°C)']:<15}{exp['Energía Liberada(kJ)']:<15}")
     
         
 
