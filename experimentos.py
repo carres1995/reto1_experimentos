@@ -1,3 +1,4 @@
+from os import system 
 #inicializar proyecto reto 1
 
 #Lista global para almacenar los diccionarios.
@@ -16,7 +17,9 @@ lista_experimentos=[{'Nombre': 'Reaccion del sodio al agua',
                }]
 
 #FUNCIONES********************************************************
-
+#funcion limpiar
+def Limpiar():
+    system("cls")
 #Funcion para validacion de datos.
 def validar_num(lim_min, lim_max, mensaje):
     while True:
@@ -36,11 +39,11 @@ def agregar_exp(nombre, fecha, resultado, temperatura, energia):
     nuevo_exp = {"Nombre": nombre,"Fecha": fecha,"Resultado": resultado,"Temperatura (°C)": temperatura,"Energía Liberada(kJ)": energia}
     lista_experimentos.append(nuevo_exp) #Se crea nuevo diccionario conn los datos del experimento y se almacena en la lista global
     
-    print(f"\n{'Nombre':<35}{'Fecha':<12}{'Resultado':<80}{'Temp (°C)':<15}{'Energía (kJ)':<15}") #Se imprime en formato tabla con la informacion del experimento agregado
+    #print(f"\n{'Nombre':<35}{'Fecha':<12}{'Resultado':<80}{'Temp (°C)':<15}{'Energía (kJ)':<15}") #Se imprime en formato tabla con la informacion del experimento agregado
 
-    print(f"{nombre:<35}{fecha:<12}{resultado:<80}{temperatura:<15}{energia:<15}")
-   
+    #print(f"{nombre:<35}{fecha:<12}{resultado:<80}{temperatura:<15}{energia:<15}")
     print(f"\nExperimento {nombre} grabado con exito!!!!!")
+    
 
 
 
@@ -53,7 +56,7 @@ def eliminar_experimento(nombre_eliminar):
             print(f"\nEl experimento '{nombre_eliminar}' ha sido eliminado con éxito.")
             return
     print(f"\nNo se encontró ningún experimento con el nombre '{nombre_eliminar}'.")
-
+    
 
 #Funcion para visualizar registros de los experimentos
 def visualizar_exp():
@@ -79,7 +82,7 @@ def modificar_experimento(lista, nombre_modificar, clave, nuevo_valor):
             if clave in exp:
                 
                 exp[clave] = nuevo_valor  # Modificar el valor
-                print(f'\nModificado con éxito: {clave} ahora es "{nuevo_valor}" en el experimento "{nombre_modificar}".\n')
+                print(f'\nModificado con éxito:Se modifico {clave}, antes era "{nombre_modificar}" ahora es "{nuevo_valor}".\n')
                 return  # Salir de la función una vez modificado
             else:
                 print(f'\nLa clave "{clave}" no existe en el experimento "{nombre_modificar}".\n')
@@ -87,7 +90,7 @@ def modificar_experimento(lista, nombre_modificar, clave, nuevo_valor):
 
     # Si no se encontró el experimento
     print(f'\nNo se encontró el experimento con el nombre "{nombre_modificar}".\n')
-
+    
 
 
 
@@ -101,7 +104,7 @@ def promedio(list_diccionario, clave):
             except ValueError:
                 pass
     return sum(valores)/ len(valores) if valores else None #Retorna el promedio si se cumple la condicion, de no ser asi retorna none
-
+    Limpiar()
 
 
 #Funcion de comparar 
@@ -139,7 +142,7 @@ def comparar_experimentos(lista, nombre1, nombre2):
         print(f" Ambos experimentos liberaron la misma cantidad de energía ({energia1} kJ).")
 
     print("\n Comparación finalizada.")
-
+    
 
 
     # Función para obtener valores mínimos y máximos
@@ -156,7 +159,7 @@ def obtener_min_max(lista, clave):
 
 #MENU**************************************************************
 
-
+Limpiar()
 while True:
     print("\nMenu principal: ")
     print("\n1. Agregar experimento")
@@ -164,12 +167,13 @@ while True:
     print("3. Visualizar experimentos")
     print("4. Modificar experimento")
     print("5. Operaciones experimentos")
-    print("6. Salir")
-        
+    print("6. Salir")   
     ingreso= input("\nIngresa un numero de opcion: ")
+    Limpiar()
 
     #Ingreso para registro de experimentos
     if ingreso =="1":
+        Limpiar()
         nombre= input("\nIngrese nombre experimento: ")
         dia = validar_num(1,31,'Digita dia del experimento: ')
         mes = validar_num(1,12, 'Digita el mes que se realizo el experimento: ')
@@ -178,53 +182,66 @@ while True:
         resultado= input("Ingrese resultado del experimento: ")
         temperatura = validar_num(0,100000, 'Digita la temperatura de ignicion (°C): ')
         energia= validar_num(0,100000, 'Digita la energia liberada (kj): ')
+        Limpiar()
         agregar_exp(nombre, fecha, resultado, temperatura, energia)
+        
 
     #Ingreso para eliminar experimentos
     elif ingreso == "2":
+        Limpiar()
         nombre_eliminar = input("\nIngrese el nombre del experimento a eliminar: ")
+        Limpiar()
         eliminar_experimento(nombre_eliminar) 
+        
 
     #Ingreso a visualizar experimentos registrados
     elif ingreso == '3':
-        visualizar_exp()     
-
+        Limpiar()
+        visualizar_exp()  
+         
+        
     #Ingreso a modificar experimentos          
     elif ingreso == '4':
+        Limpiar()
         nomb_modificar = input('\nIngresa nombre del experimento a modificar: ')
         clave = input('Ingresa el parametro al cual le quieres cambiar el resultado: ')
         nuevo_valor = input('Ingresa el nuevo valor: ')
+        Limpiar()
         modificar_experimento(lista_experimentos,nomb_modificar,clave,nuevo_valor)
         
 
 
 #SUBMENU DE OPERACIONES***********************************************
     elif ingreso == "5":
+        Limpiar()
         while True:
+            
             print("\nMenu operaciones: ")
             print("\n1. Promedio")
             print("2. Maximos y Minimos")
             print("3. Comparar")
             print("4. Volver menu principal")
-        
+            
             ingreso1= input("\nIngrese operacion: ")
 
-# Salir del menú de operaciones
-            if ingreso1 == '4':  
-                 break  
 
 #Ingreso para obtener los promedios
-            elif ingreso1 == '1':
+            if ingreso1 == '1':
+                Limpiar()
                 print('\nOpciones disponibles para calcular el promedio: ')
                 print('1. Temperatura (°C)')
                 print('2. Energía Liberada(kJ)')
                 clave_opcion = input('\nIngresa la opcion de clave a promediar: ')
+                Limpiar
                 if clave_opcion == '1':
                     clave1="Temperatura (°C)"
+                    Limpiar()
                 elif clave_opcion == '2':
                     clave1 = "Energía Liberada(kJ)"
+                    Limpiar()
                 else:
                     print('\nOpcion invalida.')
+                    Limpiar()
                     continue
                 result = promedio(lista_experimentos,clave1)
                 if result is not None:
@@ -235,7 +252,8 @@ while True:
 
 
   # Opción de Mínimos y Máximos           
-            elif ingreso1 == '2': 
+            elif ingreso1 == '2':
+                Limpiar() 
                 print('\nOpciones disponibles para calcular mínimos y máximos: ')
                 print('1. Temperatura (°C)')
                 print('2. Energía Liberada(kJ)')
@@ -243,10 +261,13 @@ while True:
                 clave_op = input('\nIngresa la opción de clave a analizar: ')
                 if clave_op == '1':
                     clave2 = "Temperatura (°C)"
+                    Limpiar()
                 elif clave_op == '2':
                     clave2 = "Energía Liberada(kJ)"
+                    Limpiar()
                 else:
                     print('\nOpción inválida.')
+                    Limpiar()
                     continue
 
                 min_exp, max_exp = obtener_min_max(lista_experimentos, clave2)
@@ -254,13 +275,24 @@ while True:
                 if min_exp and max_exp:
                     print(f'\nEl experimento con menor {clave2} es: {min_exp["Nombre"]} ({min_exp[clave2]}).')
                     print(f'El experimento con mayor {clave2} es: {max_exp["Nombre"]} ({max_exp[clave2]}).')
-
+                
 
 # Comparar experimentos
-            elif ingreso1 == '3':  
+            elif ingreso1 == '3':
+                Limpiar()  
+                print("Que experimentos deseas comparar?\n")
+                visualizar_exp()
                 nombre1 = input("\nIngrese el nombre del primer experimento: ")
                 nombre2 = input("Ingrese el nombre del segundo experimento: ")
+                Limpiar()
+                
                 comparar_experimentos(lista_experimentos, nombre1, nombre2)
+                
+                        
+# Salir del menú de operaciones
+            elif ingreso1 == '4':
+                Limpiar()  
+                break      
 
             else:
                 print('\nOpcion incorrecta, intenta nuevamente.')
@@ -269,12 +301,16 @@ while True:
 
 # Abandonar programa                        
     elif ingreso == "6":
+        Limpiar()
         print("\nHasta pronto, Adios!! ")
+        
         break   
+        
 
     else:
+        Limpiar()
         print('\nOpcion incorrecta, intenta nuevamente. ')
-
+Limpiar()        
 
              
     
