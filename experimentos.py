@@ -181,16 +181,16 @@ while True:
         agregar_exp(nombre, fecha, resultado, temperatura, energia)
 
     #Ingreso para eliminar experimentos
-    if ingreso == "2":
+    elif ingreso == "2":
         nombre_eliminar = input("\nIngrese el nombre del experimento a eliminar: ")
         eliminar_experimento(nombre_eliminar) 
 
     #Ingreso a visualizar experimentos registrados
-    if ingreso == '3':
+    elif ingreso == '3':
         visualizar_exp()     
 
     #Ingreso a modificar experimentos          
-    if ingreso == '4':
+    elif ingreso == '4':
         nomb_modificar = input('\nIngresa nombre del experimento a modificar: ')
         clave = input('Ingresa el parametro al cual le quieres cambiar el resultado: ')
         nuevo_valor = input('Ingresa el nuevo valor: ')
@@ -199,7 +199,7 @@ while True:
 
 
 #SUBMENU DE OPERACIONES***********************************************
-    if ingreso == "5":
+    elif ingreso == "5":
         while True:
             print("\nMenu operaciones: ")
             print("\n1. Promedio")
@@ -214,7 +214,7 @@ while True:
                  break  
 
 #Ingreso para obtener los promedios
-            if ingreso1 == '1':
+            elif ingreso1 == '1':
                 print('\nOpciones disponibles para calcular el promedio: ')
                 print('1. Temperatura (°C)')
                 print('2. Energía Liberada(kJ)')
@@ -235,7 +235,7 @@ while True:
 
 
   # Opción de Mínimos y Máximos           
-            if ingreso1 == '2': 
+            elif ingreso1 == '2': 
                 print('\nOpciones disponibles para calcular mínimos y máximos: ')
                 print('1. Temperatura (°C)')
                 print('2. Energía Liberada(kJ)')
@@ -257,17 +257,23 @@ while True:
 
 
 # Comparar experimentos
-            if ingreso1 == '3':  
+            elif ingreso1 == '3':  
                 nombre1 = input("\nIngrese el nombre del primer experimento: ")
                 nombre2 = input("Ingrese el nombre del segundo experimento: ")
                 comparar_experimentos(lista_experimentos, nombre1, nombre2)
 
+            else:
+                print('\nOpcion incorrecta, intenta nuevamente.')
+
 
 
 # Abandonar programa                        
-    if ingreso == "6":
+    elif ingreso == "6":
         print("\nHasta pronto, Adios!! ")
         break   
+
+    else:
+        print('\nOpcion incorrecta, intenta nuevamente. ')
 
 
              
